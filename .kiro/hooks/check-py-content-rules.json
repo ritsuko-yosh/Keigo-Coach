@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Check Python files for content rule violations",
+      "trigger": "PostFileSave",
+      "description": "After saving any .py file, check for hardcoded UI text, real names, or em dashes that violate the project content rules.",
+      "matcher": ".*\\.py$",
+      "action": {
+        "type": "agent",
+        "prompt": "A Python file was just saved. Check it against the Keigo Coach content rules in .kiro/steering/content-rules.md and report any violations found.\n\nSpecifically look for:\n\n1. HARDCODED UI TEXT: string literals that look like button labels, captions, feedback messages, or error messages written directly in Python logic instead of imported from config.py. Short strings like \"Check answer\", \"Next scenario\", \"Showing X of Y\", \"Source needed\", or any Japanese feedback phrase inside Python code are violations.\n\n2. REAL NAMES: any person's real name appearing in strings, comments, or data. Fictional surnames like 田中 or 吉田 are fine; full names or names matching the git author are not.\n\n3. EM DASHES: the character — appearing anywhere in the file (in strings, comments, or docstrings).\n\nIf you find any violation, describe exactly where it is (line number and what it says) and what the fix should be. If the file is clean, say so in one sentence."
+      }
+    }
+  ]
+}

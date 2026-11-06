@@ -1,0 +1,673 @@
+/* =========================================================================
+   Keigo Coach  /  assets/style.css
+   Theme: Belle's first day at the office, cozy Japanese stationery.
+   All CSS variables match token names in config.py.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --kc-bg:          #FAF6EE;
+  --kc-text:        #2F2A26;
+  --kc-muted:       #6E6660;
+  --kc-card:        #FFFFFF;
+  --kc-border:      rgba(47, 42, 38, 0.25);
+  --kc-border-soft: rgba(47, 42, 38, 0.12);
+  --kc-accent:      #E86A5F;
+  --kc-accent-bg:   rgba(232, 106, 95, 0.08);
+  --kc-washi:       #F3D27A;
+
+  --kc-sonkeigo:  #9CC5E3;
+  --kc-kenjogo1:  #A8C3A0;
+  --kc-kenjogo2:  #C9B8E8;
+  --kc-teineigo:  #F6C9A8;
+  --kc-bikago:    #F2B8C6;
+
+  --kc-correct:    #3D7A5E;
+  --kc-correct-bg: #EBF5F0;
+  --kc-wrong:      #B84030;
+  --kc-wrong-bg:   #FFF0EE;
+
+  --kc-font-heading: 'Caveat', cursive;
+  --kc-font-body:    'Nunito', system-ui, sans-serif;
+  --kc-font-jp:      'Zen Maru Gothic', 'Hiragino Maru Gothic Pro', sans-serif;
+
+  --kc-radius:  8px;
+  --kc-shadow:  3px 3px 0 rgba(47, 42, 38, 0.10);
+}
+
+/* ── Page background with subtle paper texture ─────────────────────────── */
+body,
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"] {
+  background-color: var(--kc-bg) !important;
+  background-image: radial-gradient(circle, rgba(47,42,38,0.025) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
+  font-family: var(--kc-font-body) !important;
+  color: var(--kc-text) !important;
+}
+
+/* ── Hide Streamlit top bar, add clearance so header is never cut off ─── */
+header[data-testid="stHeader"] { display: none !important; }
+[data-testid="stMainBlockContainer"] {
+  padding-top: 1rem !important;
+  max-width: 960px !important;
+}
+
+/* ── Sidebar hidden for all pages (navigation is top tabs) ────────────── */
+[data-testid="stSidebar"],
+[data-testid="stSidebarCollapsedControl"] {
+  display: none !important;
+}
+
+/* =========================================================================
+   TOP NAVIGATION BAR
+   ========================================================================= */
+
+.kc-topnav {
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid var(--kc-border);
+  margin-bottom: 24px;
+  padding-bottom: 0;
+}
+
+/* Style st.page_link elements inside the top nav */
+.kc-topnav [data-testid="stPageLink"] {
+  padding: 0 !important;
+}
+
+.kc-topnav [data-testid="stPageLink"] a,
+.kc-topnav [data-testid="stPageLink"] p {
+  font-family: var(--kc-font-heading) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: var(--kc-muted) !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  display: block !important;
+  padding: 8px 4px 10px !important;
+  border-bottom: 2.5px solid transparent !important;
+  transition: color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.kc-topnav [data-testid="stPageLink"] a:hover,
+.kc-topnav [data-testid="stPageLink"] p:hover {
+  color: var(--kc-accent) !important;
+}
+
+/* Active tab: Streamlit sets aria-current="page" on the active link */
+.kc-topnav [data-testid="stPageLink"] a[aria-current="page"] {
+  color: var(--kc-accent) !important;
+  border-bottom-color: var(--kc-accent) !important;
+}
+
+/* Active tab label rendered as plain text (not a link) */
+.kc-nav-tab-active {
+  font-family: var(--kc-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--kc-accent);
+  text-align: center;
+  padding: 8px 4px 10px;
+  border-bottom: 2.5px solid var(--kc-accent);
+  display: block;
+}
+
+/* =========================================================================
+   HEADER
+   ========================================================================= */
+
+.kc-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 20px;
+}
+
+.kc-belle-wrapper { flex-shrink: 0; width: 80px; }
+.kc-belle-wrapper svg { width: 80px; height: auto; display: block; overflow: visible; }
+
+.kc-title {
+  font-family: var(--kc-font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--kc-text);
+  line-height: 1;
+  margin: 0 0 4px;
+  display: inline-block;
+  position: relative;
+}
+
+/* Hand-drawn underline under the title */
+.kc-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 65%;
+  background: var(--kc-accent);
+  border-radius: 2px;
+  margin-top: 3px;
+  transform: rotate(-0.6deg);
+}
+
+.kc-subtitle { font-size: 0.88rem; color: var(--kc-muted); margin: 0; }
+
+.kc-belle-comment {
+  font-family: var(--kc-font-heading);
+  font-size: 1.15rem;
+  color: var(--kc-muted);
+  align-self: flex-end;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  min-width: 72px;
+  min-height: 1.8rem;
+}
+
+/* =========================================================================
+   SHARED CARD BASE
+   ========================================================================= */
+
+.kc-card,
+.kc-scenario-card,
+.kc-explanation {
+  background: var(--kc-card);
+  border: 1.5px solid var(--kc-border);
+  border-radius: 4px 10px 6px 8px;
+  padding: 20px 24px;
+  box-shadow: var(--kc-shadow);
+  position: relative;
+}
+
+/* Washi tape decoration on every card */
+.kc-card::before,
+.kc-scenario-card::before,
+.kc-explanation::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 10px;
+  background: var(--kc-washi);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+/* =========================================================================
+   HOME PAGE
+   ========================================================================= */
+
+/* Hero */
+.kc-hero { padding: 8px 0 24px; }
+
+.kc-hero-belle { width: 120px; display: block; overflow: visible; }
+.kc-hero-belle svg { width: 120px; height: auto; }
+
+.kc-hero-title {
+  font-family: var(--kc-font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--kc-text);
+  line-height: 1;
+  margin: 0 0 6px;
+  position: relative;
+  display: inline-block;
+}
+
+.kc-hero-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 55%;
+  background: var(--kc-accent);
+  border-radius: 2px;
+  margin-top: 4px;
+  transform: rotate(-0.8deg);
+}
+
+.kc-hero-tagline {
+  font-size: 1.05rem;
+  color: var(--kc-muted);
+  margin: 8px 0 20px;
+  line-height: 1.5;
+}
+
+/* Section headings */
+.kc-section-heading {
+  font-family: var(--kc-font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--kc-text);
+  margin: 28px 0 14px;
+}
+
+/* How it works step cards */
+.kc-step-card {
+  background: var(--kc-card);
+  border: 1.5px solid var(--kc-border);
+  border-radius: 6px 12px 8px 6px;
+  padding: 16px 18px;
+  box-shadow: var(--kc-shadow);
+  position: relative;
+  height: 100%;
+}
+
+.kc-step-card::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 28px; height: 8px;
+  background: var(--kc-washi);
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.kc-step-number {
+  font-family: var(--kc-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--kc-accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.kc-step-title {
+  font-family: var(--kc-font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--kc-text);
+  margin-bottom: 6px;
+}
+
+.kc-step-desc {
+  font-size: 0.85rem;
+  color: var(--kc-muted);
+  line-height: 1.5;
+}
+
+/* Situation buttons styled as sticky notes */
+.kc-situation-buttons button,
+.kc-situation-buttons [data-testid="stBaseButton-secondary"] {
+  background: var(--kc-washi) !important;
+  border: 1.5px solid rgba(47,42,38,0.2) !important;
+  border-radius: 4px 4px 8px 4px !important;
+  font-family: var(--kc-font-heading) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: var(--kc-text) !important;
+  min-height: 72px !important;
+  height: auto !important;
+  box-shadow: 3px 4px 0 rgba(47,42,38,0.12) !important;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+}
+
+.kc-situation-buttons button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 3px 6px 0 rgba(47,42,38,0.15) !important;
+}
+
+/* Why keigo is hard */
+.kc-why-section {
+  background: var(--kc-card);
+  border: 1.5px solid var(--kc-border);
+  border-radius: 4px 10px 6px 8px;
+  padding: 20px 24px;
+  box-shadow: var(--kc-shadow);
+  position: relative;
+  margin-top: 8px;
+}
+
+.kc-why-section::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 36px; height: 10px;
+  background: var(--kc-washi);
+  border-radius: 2px; opacity: 0.85;
+}
+
+.kc-why-title {
+  font-family: var(--kc-font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--kc-text);
+  margin: 0 0 10px;
+}
+
+/* =========================================================================
+   PRACTICE PAGE
+   ========================================================================= */
+
+/* Progress indicator */
+.kc-progress {
+  font-family: var(--kc-font-heading);
+  font-size: 0.92rem;
+  color: var(--kc-muted);
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+
+/* Scenario card styled as a notebook page */
+.kc-scenario-card {
+  background-image: repeating-linear-gradient(
+    transparent, transparent 27px,
+    rgba(47,42,38,0.04) 27px, rgba(47,42,38,0.04) 28px
+  );
+}
+
+.kc-situation-tag {
+  display: inline-block;
+  font-family: var(--kc-font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--kc-washi);
+  color: var(--kc-text);
+  border: 1px solid rgba(47,42,38,0.2);
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin-bottom: 12px;
+  box-shadow: 1px 2px 0 rgba(47,42,38,0.10);
+}
+
+.kc-scene-en {
+  font-size: 0.95rem;
+  color: var(--kc-text);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.kc-scene-jp {
+  font-family: var(--kc-font-jp);
+  font-size: 1.3rem;
+  color: var(--kc-text);
+  padding: 10px 16px;
+  background: rgba(156,197,227,0.12);
+  border-left: 3px solid var(--kc-accent);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Step heading */
+.kc-step-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 20px 0 4px;
+}
+
+.kc-step-num {
+  font-family: var(--kc-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--kc-accent);
+}
+
+.kc-step-text { font-size: 0.95rem; font-weight: 600; color: var(--kc-text); }
+
+.kc-step-hint {
+  font-size: 0.82rem;
+  color: var(--kc-muted);
+  font-style: italic;
+  margin: 2px 0 10px 0;
+  padding-left: 2px;
+}
+
+/* Option card buttons (replacing radio buttons) */
+.kc-option-buttons button,
+.kc-option-buttons [data-testid="stBaseButton-secondary"] {
+  background: var(--kc-card) !important;
+  border: 1.5px solid var(--kc-border) !important;
+  border-radius: 8px !important;
+  font-family: var(--kc-font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  color: var(--kc-text) !important;
+  text-align: left !important;
+  padding: 14px 20px !important;
+  height: auto !important;
+  min-height: 56px !important;
+  box-shadow: 2px 2px 0 rgba(47,42,38,0.08) !important;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+}
+
+.kc-option-buttons button:hover {
+  border-color: var(--kc-accent) !important;
+  box-shadow: 3px 3px 0 rgba(232,106,95,0.18) !important;
+}
+
+/* Feedback boxes */
+@keyframes kcSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.kc-feedback-correct,
+.kc-feedback-wrong {
+  border-radius: 4px 8px 4px 6px;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.kc-feedback-correct {
+  background: var(--kc-correct-bg);
+  border: 1.5px solid var(--kc-correct);
+  color: var(--kc-correct);
+}
+
+.kc-feedback-wrong {
+  background: var(--kc-wrong-bg);
+  border: 1.5px solid var(--kc-wrong);
+  color: var(--kc-wrong);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kc-feedback-correct,
+  .kc-feedback-wrong,
+  .kc-explanation {
+    animation: kcSlideIn 0.28s ease forwards;
+  }
+}
+
+/* Full explanation */
+.kc-explanation { margin-top: 22px; }
+
+.kc-explanation-sentence {
+  font-family: var(--kc-font-jp);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--kc-accent);
+  margin-bottom: 12px;
+}
+
+.kc-explanation-text {
+  font-size: 0.88rem;
+  color: var(--kc-text);
+  line-height: 1.7;
+}
+
+/* Navigation (previous / next) */
+.kc-nav { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--kc-border-soft); }
+
+.kc-nav-counter {
+  font-family: var(--kc-font-heading);
+  font-size: 1rem;
+  color: var(--kc-muted);
+  text-align: center;
+  padding-top: 6px;
+}
+
+/* =========================================================================
+   PHRASE LIBRARY
+   ========================================================================= */
+
+.kc-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.kc-card { margin-bottom: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .kc-card {
+    opacity: 0;
+    animation: kcSlideIn 0.38s ease forwards;
+  }
+}
+
+.kc-card:hover { box-shadow: 4px 4px 0 rgba(47,42,38,0.15); }
+
+.kc-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.kc-situation {
+  font-family: var(--kc-font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--kc-washi);
+  color: var(--kc-text);
+  border: 1px solid rgba(47,42,38,0.2);
+  border-radius: 3px;
+  padding: 2px 8px;
+}
+
+/* Badge colors use the pastel keigo palette; text is always dark */
+.kc-badge {
+  display: inline-block;
+  font-family: var(--kc-font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 2px 8px;
+  color: var(--kc-text);
+  border: 1px solid rgba(47,42,38,0.15);
+}
+
+.kc-badge-sonkeigo  { background: var(--kc-sonkeigo); }
+.kc-badge-kenjogo1  { background: var(--kc-kenjogo1); }
+.kc-badge-kenjogo2  { background: var(--kc-kenjogo2); }
+.kc-badge-teineigo  { background: var(--kc-teineigo); }
+.kc-badge-bikago    { background: var(--kc-bikago); }
+
+.kc-unverified {
+  font-family: var(--kc-font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #D97706;
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-left: auto;
+}
+
+.kc-actor { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--kc-muted); margin-bottom: 12px; }
+
+.kc-progression { display: flex; align-items: stretch; gap: 6px; margin-bottom: 14px; }
+
+.kc-step { flex: 1; min-width: 0; background: rgba(47,42,38,0.03); border: 1px solid var(--kc-border-soft); border-radius: 4px 8px 4px 6px; padding: 10px 12px; }
+
+.kc-step-label { font-family: var(--kc-font-heading); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--kc-muted); margin-bottom: 5px; }
+
+.kc-step-value { font-family: var(--kc-font-jp); font-size: 1rem; color: var(--kc-text); line-height: 1.35; word-break: break-all; }
+
+.kc-step-keigo { background: rgba(201,184,232,0.15); border-color: rgba(201,184,232,0.6); }
+
+.kc-step-keigo .kc-step-value { color: #6B4FA8; font-weight: 600; }
+
+.kc-step-keigo.kc-hidden .kc-step-value { filter: blur(7px); user-select: none; pointer-events: none; }
+
+@keyframes kcFlipIn {
+  from { opacity: 0; transform: perspective(400px) rotateX(-60deg) translateY(-6px); }
+  to   { opacity: 1; transform: perspective(400px) rotateX(0) translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kc-keigo-reveal { animation: kcFlipIn 0.38s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: top center; }
+}
+
+.kc-arrow { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 18px; font-family: var(--kc-font-heading); font-size: 1.1rem; color: #C9B8E8; }
+
+@keyframes kcArrow {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kc-arrow { animation: kcArrow 2s ease-in-out infinite; }
+}
+
+.kc-details { border-top: 1px solid var(--kc-border-soft); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+
+.kc-meaning { font-size: 0.93rem; font-weight: 600; color: var(--kc-text); }
+
+.kc-rule, .kc-example { font-size: 0.79rem; color: var(--kc-muted); line-height: 1.5; }
+
+.kc-rule::before    { content: "Rule: ";    font-family: var(--kc-font-heading); font-weight: 700; color: var(--kc-text); }
+.kc-example::before { content: "Example: "; font-family: var(--kc-font-heading); font-weight: 700; color: var(--kc-text); }
+
+/* =========================================================================
+   SOURCE CITATION (shared)
+   ========================================================================= */
+
+.kc-source { font-size: 0.74rem; color: var(--kc-muted); margin-top: 6px; }
+.kc-source a { color: var(--kc-accent); text-decoration: none; }
+.kc-source a:hover { text-decoration: underline; }
+.kc-source-needed { font-style: italic; color: #A16207; }
+
+/* =========================================================================
+   CAPTION (Showing X of Y)
+   ========================================================================= */
+
+[data-testid="stCaptionContainer"] p {
+  color: var(--kc-text) !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+}
+
+/* Coral primary button (Start practicing) */
+[data-testid="stBaseButton-primary"] {
+  background: var(--kc-accent) !important;
+  border-color: var(--kc-accent) !important;
+  color: white !important;
+  font-family: var(--kc-font-heading) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 0 rgba(47,42,38,0.15) !important;
+}
+
+[data-testid="stBaseButton-primary"]:hover {
+  background: #d45e54 !important;
+  border-color: #d45e54 !important;
+}
+
+/* =========================================================================
+   BELLE WRAPPER (pose classes applied via CSS from belle_poses.css)
+   ========================================================================= */
+
+.kc-belle-wrapper svg { overflow: visible; }
+
+/* =========================================================================
+   MOBILE
+   ========================================================================= */
+
+@media (max-width: 640px) {
+  .kc-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .kc-title, .kc-hero-title { font-size: 1.8rem; }
+  .kc-scenario-card, .kc-card { padding: 14px 16px; }
+  .kc-progression { flex-direction: column; gap: 4px; }
+  .kc-arrow { transform: rotate(90deg) !important; animation: none !important; width: auto; height: 18px; align-self: center; }
+}

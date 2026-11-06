@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Validate data files on save",
+      "trigger": "PostFileSave",
+      "description": "After saving any file in data/, run validate.py and surface errors and warnings to the agent.",
+      "matcher": "data/.*",
+      "action": {
+        "type": "command",
+        "command": "cd /Users/ritsukoyoshida/Documents/keigo-coach && .venv/bin/python validate.py 2>&1",
+        "timeout": 30
+      }
+    }
+  ]
+}

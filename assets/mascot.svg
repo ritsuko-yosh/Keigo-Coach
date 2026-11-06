@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="72" height="87"
+     role="img" aria-label="Placeholder for your hand-drawn mascot">
+  <title>Mascot placeholder</title>
+  <!--
+    PLACEHOLDER: Replace this file with your own hand-drawn SVG character.
+    Recommended: a drawing of your dog in assets/mascot.svg.
+    Any viewBox ratio works; the app scales it to width="72".
+  -->
+  <rect x="4" y="4" width="92" height="112" rx="8"
+        fill="#FAF8F2" stroke="#2C2926" stroke-width="1.5"
+        stroke-dasharray="5 3"/>
+  <text x="50" y="46" text-anchor="middle"
+        font-family="Caveat, cursive" font-size="13"
+        fill="#7A7066" font-weight="600">your dog</text>
+  <text x="50" y="64" text-anchor="middle"
+        font-family="Caveat, cursive" font-size="13"
+        fill="#7A7066" font-weight="600">character</text>
+  <text x="50" y="82" text-anchor="middle"
+        font-family="Caveat, cursive" font-size="13"
+        fill="#7A7066" font-weight="600">here :)</text>
+  <text x="50" y="106" text-anchor="middle"
+        font-family="Caveat, cursive" font-size="9"
+        fill="#B0A898">drop into assets/mascot.svg</text>
+</svg>

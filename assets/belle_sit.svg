@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" role="img" aria-labelledby="belleTitle">
+
+  <title id="belleTitle">Belle, the Keigo Coach mascot</title>
+
+  <g id="belle" stroke="#8A7A72" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+
+    <ellipse id="shadow" cx="100" cy="228" rx="44" ry="6" fill="#EADFD6" stroke="none"/>
+
+    <path id="tail" d="M138,182 C150,178 156,166 152,152 C160,160 165,172 161,184 C168,183 169,192 162,198 C154,204 143,199 138,192 Z" fill="#F0C27A"/>
+
+    <g id="arms">
+
+      <path id="arm-left" d="M76,148 C64,146 48,148 39,152 C32,156 34,167 43,167 C53,167 65,163 77,161 Z" fill="#FBE0B0"/>
+
+      <path id="arm-right" d="M124,148 C136,146 152,148 161,152 C168,156 166,167 157,167 C147,167 135,163 123,161 Z" fill="#FBE0B0"/>
+
+    </g>
+
+    <path id="body" d="M72,138 C59,164 55,194 62,211 C68,222 84,225 100,225 C116,225 132,222 138,211 C145,194 141,164 128,138 Z" fill="#FBE0B0"/>
+
+    <g id="feet">
+
+      <path d="M76,220 C76,230 96,230 96,220" fill="#FBE0B0"/>
+
+      <path d="M104,220 C104,230 124,230 124,220" fill="#FBE0B0"/>
+
+    </g>
+
+    <g id="collar">
+
+      <path d="M72,137 Q100,152 128,137" fill="none" stroke="#F06B62" stroke-width="6"/>
+
+      <circle cx="100" cy="153" r="6" fill="#F5C451" stroke-width="2"/>
+
+    </g>
+
+    <g id="head">
+
+      <path id="ear-left" d="M60,56 C40,54 27,72 29,95 C31,110 43,116 53,108 C59,100 61,80 67,66 Z" fill="#F0C27A"/>
+
+      <path id="ear-right" d="M140,56 C160,54 173,72 171,95 C169,110 157,116 147,108 C141,100 139,80 133,66 Z" fill="#F0C27A"/>
+
+      <path id="face" d="M100,40 C132,40 152,58 152,86 C152,116 130,134 100,134 C70,134 48,116 48,86 C48,58 68,40 100,40 Z" fill="#FBE0B0"/>
+
+      <ellipse id="muzzle" cx="100" cy="104" rx="15" ry="11" fill="#FFF6EA" stroke="none"/>
+
+      <g id="eyes-open" fill="#5A4A44" stroke="none">
+
+        <ellipse cx="84" cy="92" rx="3.4" ry="2.7"/>
+
+        <ellipse cx="116" cy="92" rx="3.4" ry="2.7"/>
+
+      </g>
+
+      <g id="eyes-closed" fill="none" stroke="#5A4A44" stroke-width="2" style="display:none">
+
+        <path d="M79,92 Q84,96 89,92"/>
+
+        <path d="M111,92 Q116,96 121,92"/>
+
+      </g>
+
+      <ellipse id="nose" cx="100" cy="99" rx="4" ry="3" fill="#5A4A44" stroke="none"/>
+
+      <path id="mouth" d="M100,102 L100,106 M95,106 Q100,110 105,106" fill="none" stroke="#5A4A44" stroke-width="1.6"/>
+
+    </g>
+
+  </g>
+
+</svg>

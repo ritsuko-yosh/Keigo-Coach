@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Check Belle Storybook design tokens",
+      "trigger": "PostFileSave",
+      "description": "After saving design-related files, check them against the Belle's Keigo Storybook design tokens and motion rules.",
+      "matcher": "(assets/.*\\.css|config\\.py|kc_utils\\.py|app\\.py|pages/.*\\.py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Check the saved design-related file against .kiro/steering/design.md. Report violations only, with file and line references when possible. Verify that any design tokens use only the approved values: paper #FBF5E9, paper-shade #F1E7D3, ink #3A322C, ink-soft #6E6660, cover coral #E86A5F, cover text cream #FFF8EC, ribbon #C9B8E8, tab colors home #F3D27A, practice #F6C9A8, library #9CC5E3, progress #A8C3A0, about #C9B8E8, and keigo colors 尊敬語 #9CC5E3, 謙譲語I #A8C3A0, 謙譲語II #C9B8E8, 丁寧語 #F6C9A8, 美化語 #F2B8C6. Verify the font roles Fraunces for titles, Nunito for English body, Zen Maru Gothic for Japanese, and Caveat for handwritten notes and Belle comments. Check that motion uses the design timing tokens quick 150ms, normal 350ms, slow 700ms, page flip 500ms to 600ms, ease-out entering, ease-in leaving, soft spring for Belle, and prefers-reduced-motion fallbacks. Flag any unapproved theme token, font, animation timing, dark mode treatment, bright green, Duolingo-style game treatment, or web image dependency. Do not modify files. If clean, say the file complies with the Belle's Keigo Storybook design."
+      }
+    }
+  ]
+}

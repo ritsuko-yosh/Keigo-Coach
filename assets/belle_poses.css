@@ -1,0 +1,34 @@
+#belle #head,
+#belle #arms {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 0.45s ease;
+}
+
+.pose-sit #belle {
+  animation: belle-idle 2.8s ease-in-out infinite;
+  transform-origin: 100px 225px;
+}
+
+@keyframes belle-idle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+.pose-bow-small #head { transform: translateY(8px) scale(0.98); }
+.pose-bow-small #eyes-open { display: none; }
+.pose-bow-small #eyes-closed { display: inline !important; }
+
+.pose-bow-deep #head { transform: translateY(18px) scale(0.95); }
+.pose-bow-deep #arms { transform: translateY(4px) scaleX(0.9); }
+.pose-bow-deep #eyes-open { display: none; }
+.pose-bow-deep #eyes-closed { display: inline !important; }
+
+.pose-tilt #head { transform: rotate(-12deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  #belle, #belle #head, #belle #arms {
+    animation: none !important;
+    transition: none !important;
+  }
+}
